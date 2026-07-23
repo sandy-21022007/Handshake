@@ -14,5 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:${(date +%s)
+      
+    - name: Run evaluation tests
+      run: docker run --rm my-image-name:latest bash /app/test.sh
