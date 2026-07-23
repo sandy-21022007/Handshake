@@ -1,10 +1,6 @@
 #!/bin/bash
+# 1. Run the solver to generate /app/report.json
+python /app/solve.py
 
-# pytest is baked into the environment image (environment/Dockerfile).
-pytest /tests/test_outputs.py -rA
-
-if [ $? -eq 0 ]; then
-  echo 1 > /app/reward.txt
-else
-  echo 0 > /app/reward.txt
-fi
+# 2. Run the tests
+pytest /tests/test_outputs.py
